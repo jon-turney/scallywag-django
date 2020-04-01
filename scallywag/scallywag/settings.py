@@ -25,12 +25,13 @@ SECRET_KEY = '$20l1e2w@b9w9cd87nr2uy)!i2-f-teayvug5t^ur*6sl-p!1^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'builds',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,6 +78,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'builds': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': '/home/jon/scallywag/carpetbag.db',
     }
 }
 

@@ -1,0 +1,49 @@
+{% load staticfiles %}
+
+<meta http-equiv="refresh" content="60">
+<link rel="stylesheet" type="text/css" href="{% static 'builds/style.css' %}" />
+
+{% if rows %}
+    <table class="grid">
+    <tr>
+      <th>id</th>
+      <th>source package</th>
+      <th>status</th>
+      <th>by</th>
+      <th>commit</th>
+      <th>log</th>
+      <th>start time</th>
+      <th>end time</th>
+    </tr>
+    {% for r in rows %}
+        <tr>
+          <td>{{ r.id }}</a></td>
+          <td>{{ r.srcpkg }}</td>
+          <td class="{{ r.status }}">{{ r.status }}</td>
+          <td>{{ r.user }}</td>
+          <td><a href="https://cygwin.com/git-cygwin-packages/?p=git/cygwin-packages/{{ r.srcpkg }}.git;a=commitdiff;h={{ r.hash }}">{{ r.hash|slice:"0:8" }}</a></td>
+          <td><a href="{{ r.logurl }}">[log]</a></td>
+          <td>{{ r.start_timestamp|date:"c" }}</td>
+          <td>{{ r.end_timestamp|date:"c" }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No builds are available.</p>
+{% endif %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if rows.has_previous %}
+            <a href="?page={{ rows.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            page {{ rows.number }} of {{ rows.paginator.num_pages }}
+        </span>
+
+        {% if rows.has_next %}
+            <a href="?page={{ rows.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>

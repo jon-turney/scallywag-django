@@ -23,8 +23,8 @@
           <td>{{ r.user }}</td>
           <td><a href="https://cygwin.com/git-cygwin-packages/?p=git/cygwin-packages/{{ r.srcpkg }}.git;a=commitdiff;h={{ r.hash }}">{{ r.hash|slice:"0:8" }}</a></td>
           <td><a href="{{ r.logurl }}">[log]</a></td>
-          <td>{{ r.start_timestamp|date:"c" }}</td>
-          <td>{{ r.end_timestamp|date:"c" }}</td>
+          <td>{{ r.start_timestamp|date:"Y-m-d H:i:s" }}</td>
+          <td>{{ r.end_timestamp|date:"Y-m-d H:i:s" }}</td>
         </tr>
     {% endfor %}
     </table>
